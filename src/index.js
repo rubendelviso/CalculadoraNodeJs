@@ -43,6 +43,8 @@ const readline = require('readline');
 const rl = readline.createInterface({input: process.stdin, output: pro})
 
 function pregunta(texto){
+
+    //Texto es el mensaje que va a ver el usuario y respuesta es el input que se guarda
     return new Promise((resolve)=>{ 
         rl.question(texto,(respuesta) => resolve(respuesta));
     });
@@ -63,12 +65,22 @@ async function main (){
         console.log("El Resultado de la cuenta es: "+Resultado)
 
     }
+    else{
+        console.log("Recuerde que deben ser numeros enteroS\tEjemplo: 2 , 3\nIntentelo Nuevamente")
+        main()
+
+
+
+    }
 }
 
-const ValidoNumero = (NumNoValidado)=>{}
+const ValidoNumero = (NumNoValidado)=>{
+    isNaN(NumNovalidado)?true:false
+}
+
 const RealizaOperacion = (operacion,primerNumero,SegundoNumero)=>{
 
-    return ("Hasta aca llego, Tengo Sueño")
+    return ()
     // Faltan realizar validaciones y descubrir como concatenar numero y la operacion para poder hacer la cuenta
 
 }
