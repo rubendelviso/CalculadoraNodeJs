@@ -40,7 +40,9 @@ console.log("Bienvenidos a la primer calculadora usando javascript");
 
 const readline = require('readline');
 
-const rl = readline.createInterface({input: process.stdin, output: pro})
+const rl = readline.createInterface({input: process.stdin, output: process.stdout});
+
+
 
 function pregunta(texto){
 
@@ -50,15 +52,52 @@ function pregunta(texto){
     });
 }
 
+const ValidoNumero = (NumNoValidado)=>{
+    Comprobacion = isNaN(NumNoValidado)?false:true;
+    
+
+    console.log("El numero es ->",NumNoValidado, Comprobacion);
+    return Comprobacion
+}
+
+const ValidarOperacion = (Operacion,operacionValida)=>{
+    if (operacionValida.includes(Operacion)){
+        console.log("El operador esta dentro de la lista");
+        return true
+    }
+    else
+        {
+            console.log("El operador NO esta dentro de la lista")
+            return false}
+        
+}
+const RealizaOperacion = (operacion,primerNumero,SegundoNumero)=>{
+    NumeroA= parseInt(primerNumero); 
+    NumeroB= parseInt(SegundoNumero);
+    if (operacion === "+"){return NumeroA + NumeroB}
+    else if (operacion === "-"){return NumeroA - NumeroB}
+    else if (operacion === "*"){return NumeroA * NumeroB}
+    else if ((operacion === "/")&&(NumeroA!=0)&&(NumeroB!=0)){
+        
+        return NumeroA / NumeroB}
+    
+
+    // Faltan realizar validaciones y descubrir como concatenar numero y la operacion para poder hacer la cuenta
+    
+}
+
+
 async function main (){
     const operacion = await pregunta("Ingrese la operacion que desea realizar\nEjemplo:\n\t/ (para division)\n\t*(para multiplicacion)\n\tETC....")
     const PrimerNumero = await pregunta("Ingrese el primer numero")
     const SegundoNumero = await pregunta("Ingrese el segundo numero")
 
-    //Realizo Validaciones
+    const OperacionesValidas = ["+" , "-" , "*" , "/"]
 
-    if (ValidoNumero(PrimerNumero)===true &&
-     ValidoNumero(SegundoNumero)===true){
+    //Realizo Validaciones
+    
+    if ((ValidoNumero(PrimerNumero)===true) &&
+     (ValidoNumero(SegundoNumero)===true) && (ValidarOperacion(operacion,OperacionesValidas)=== true)){
 
         const Resultado = RealizaOperacion(operacion,PrimerNumero,SegundoNumero)
 
@@ -66,22 +105,24 @@ async function main (){
 
     }
     else{
-        console.log("Recuerde que deben ser numeros enteroS\tEjemplo: 2 , 3\nIntentelo Nuevamente")
-        main()
-
-
-
+        console.log("Recuerde que deben ser numeros \tEjemplo: 2 , 3\nIntentelo Nuevamente\nAdemas recuerde las operaciones validas")
+        OperacionesValidas.forEach((Objeto,Indice)=>{
+            
+            
+            console.log(Objeto)})
     }
 }
 
-const ValidoNumero = (NumNoValidado)=>{
-    isNaN(NumNovalidado)?true:false
-}
+// const ValidoNumero = (NumNoValidado)=>{
+//     isNaN(NumNovalidado)?true:false
+// }
 
-const RealizaOperacion = (operacion,primerNumero,SegundoNumero)=>{
+// const RealizaOperacion = (operacion,primerNumero,SegundoNumero)=>{
 
-    return ()
-    // Faltan realizar validaciones y descubrir como concatenar numero y la operacion para poder hacer la cuenta
+//     return ()
+//     // Faltan realizar validaciones y descubrir como concatenar numero y la operacion para poder hacer la cuenta
 
-}
-console.log("La operacion elegida es-> "+operacion)
+// }
+// console.log("La operacion elegida es-> "+operacion)
+
+main()
